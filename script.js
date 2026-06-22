@@ -16,26 +16,70 @@ gsap.registerPlugin(ScrollTrigger);
 let main = document.querySelector(".main");
 let body = document.querySelector("body");
 
-// navbar
+// navbar animation
 ScrollTrigger.create({
   trigger: "body",
   start: "20% top",
   end: "max",
 });
 
-lastScroll = 0;
+const scrollContainer = document.querySelector("[data-scroll-container]");
+let locomotiveScroll = null;
 
-window.addEventListener("scroll", () => {
-  let currentScroll = window.pageYOffset;
+if (typeof LocomotiveScroll !== "undefined") {
+  locomotiveScroll = new LocomotiveScroll({
+    el: scrollContainer || document.querySelector("body"),
+    smooth: true,
+  });
 
-  if (currentScroll > lastScroll) {
-    gsap.to(".navbar", { y: -100, duration: 1, ease: "power2.out" });
-  } else {
-    gsap.to(".navbar", { y: 0, duration: 1, ease: "power2.out" });
-  }
+  ScrollTrigger.scrollerProxy(scrollContainer || document.body, {
+    scrollTop(value) {
+      return arguments.length
+        ? locomotiveScroll.scrollTo(value, 0, 0)
+        : locomotiveScroll.scroll && locomotiveScroll.scroll.instance
+        ? locomotiveScroll.scroll.instance.scroll.y
+        : 0;
+    },
+    getBoundingClientRect() {
+      return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
+    },
+    pinType: scrollContainer && scrollContainer.style.transform ? "transform" : "fixed",
+  });
 
-  lastScroll = currentScroll;
-});
+  ScrollTrigger.addEventListener("refresh", () => locomotiveScroll.update());
+  ScrollTrigger.refresh();
+}
+
+let lastscroll = 0;
+
+const animateNavbar = (y) => {
+  gsap.killTweensOf(".navbar");
+  gsap.to(".navbar", { y, duration: 0.6, ease: "power2.out" });
+};
+
+if (locomotiveScroll) {
+  locomotiveScroll.on("scroll", (obj) => {
+    const currentScroll = (obj && obj.scroll && obj.scroll.y) || 0;
+    if (currentScroll > 200) {
+      if (currentScroll > lastscroll) animateNavbar(-100);
+      else animateNavbar(0);
+    } else {
+      animateNavbar(0);
+    }
+    lastscroll = currentScroll;
+  });
+} else {
+  window.addEventListener("scroll", () => {
+    const currentScroll = window.pageYOffset || 0;
+    if (currentScroll > 200) {
+      if (currentScroll > lastscroll) animateNavbar(-100);
+      else animateNavbar(0);
+    } else {
+      animateNavbar(0);
+    }
+    lastscroll = currentScroll;
+  });
+}
 
 
 //page 2 animation
