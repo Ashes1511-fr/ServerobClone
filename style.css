@@ -169,27 +169,56 @@ body {
   letter-spacing: -0.04em;
 }
 
-.page2 {
-  height: 500vh;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-
-}
-.rings {
-  display: flex;
-  gap: 50px;
-  padding-top: 400px;
+.page2{
+  height:500vh;
+  position:relative;
+  overflow:hidden;
 }
 
-.ring {
-  width: 200px;
-  height: 200px;
+.rings{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  position:relative;
 }
 
-.ring-arc {
-  fill: none;
-  stroke: #5de6b7;
-  stroke-width: 20;
-  stroke-linecap: round;
+.ring{
+  width:220px;
+  height:220px;
+  position:absolute;
+  transform-origin:center center;
+}
+
+.ring1{
+  left:35%;
+}
+
+.ring2{
+  right:35%;
+}
+
+.ring-arc{
+  fill:none;
+  stroke:#5de6b7;
+  stroke-width:20;
+  stroke-linecap:round;
+}
+
+.text{
+  position:relative;
+  z-index:10;
+  width:58%;
+}
+
+.word{
+  font-size:60px;
+  text-align:center;
+  line-height:1.2;
+  font-weight:400;
+}
+
+.word span{
+  display:inline-block;
+  color: transparent;
 }

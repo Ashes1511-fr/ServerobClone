@@ -42,15 +42,44 @@ window.addEventListener("scroll", () => {
 let page2 = document.querySelector(".page2");
 let rings = document.querySelector(".rings");
 
-tlpage.gsap({
-  trigger: ".page2",
-  start: "20% top",
-  end: "max",
-  amrkers : true
-})
-
-tlpage.to(".rings",{
-
+let tlpage = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".page2",
+    start: "top top",
+    scrub: true,
+    // markers :true
+  }
 });
 
+tlpage.to(".ring1", {
+  x: -200,
+  scale: 1.5
+})
+.to(".ring2", {
+  x: 200,
+  scale: 1.5
+}, "<")
+to(".page2",{
+  filter: "blur(10px)",
+});
 
+//page2 para
+
+
+let word = document.querySelector(".word");
+
+word.innerHTML = word.textContent
+  .split("")
+  .map(char => char === " " ? " " : `<span>${char}</span>`)
+  .join("");
+
+gsap.to(".word span", {
+  color: "#000",
+  stagger: 0.05,
+  scrollTrigger: {
+    trigger: ".word",
+    start: "top 80%",
+    scrub: true,
+    markers : true
+  },
+});
