@@ -13,9 +13,6 @@ if (Hls.isSupported()) {
 
 gsap.registerPlugin(ScrollTrigger);
 
-let main = document.querySelector(".main");
-let body = document.querySelector("body");
-
 // navbar
 ScrollTrigger.create({
   trigger: "body",
@@ -37,34 +34,23 @@ window.addEventListener("scroll", () => {
   lastScroll = currentScroll;
 });
 
+gsap.registerPlugin(ScrollTrigger);
 
-//page 2 animation
-let page2 = document.querySelector(".page2");
-let rings = document.querySelector(".rings");
-
-let tlpage = gsap.timeline({
+const tl = gsap.timeline({
   scrollTrigger: {
     trigger: ".page2",
     start: "top top",
-    scrub: true,
-    // markers :true
+    end: "+=500",
+    scrub: 2,
+    pin: true,
+    markers: true
   }
 });
 
-tlpage.to(".ring1", {
-  x: -200,
-  scale: 1.5
-})
-.to(".ring2", {
-  x: 200,
-  scale: 1.5
-}, "<")
-to(".page2",{
-  filter: "blur(10px)",
+tl.to(".page2 svg", {
+  scale: 0.5,
+  filter: "blur(10px)"
 });
-
-//page2 para
-
 
 let word = document.querySelector(".word");
 
