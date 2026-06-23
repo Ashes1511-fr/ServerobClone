@@ -40,19 +40,28 @@ const tl = gsap.timeline({
   scrollTrigger: {
     trigger: ".page2",
     start: "top top",
-    end: "+=500",
+    end: "+=1500",
     scrub: 2,
     pin: true,
-    markers: true
+    // markers: true
   }
 });
 
 tl.to(".page2 svg", {
+  y: -100,
+  duration: 1
+})
+.to(".page2 svg", {
   scale: 0.5,
-  filter: "blur(10px)"
+  duration: 1
+})
+.to(".page2 svg", {
+  filter: "blur(15px)",
+  duration: 1
 });
 
-let word = document.querySelector(".word");
+const word = document.querySelector(".word");
+console.log(word);
 
 word.innerHTML = word.textContent
   .split("")
@@ -60,7 +69,7 @@ word.innerHTML = word.textContent
   .join("");
 
 gsap.to(".word span", {
-  color: "#000",
+  opacity: 1,
   stagger: 0.05,
   scrollTrigger: {
     trigger: ".word",

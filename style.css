@@ -181,21 +181,28 @@ body {
 
 .page2 svg {
   position: absolute;
+  margin-top: 20%;
   z-index: 3;
-
   width: 80%;
 }
 
 .text {
   position: relative;
-
   display: flex;
   justify-content: center;
   align-items: center;
+  max-width: 60%;
+  z-index: 5;
 }
 
 .word {
-  font-size: 50px;
+  font-size: 60px;
   text-align: center;
   font-weight: 400;
+}
+
+.word span{
+ display: inline-block;
+ opacity: 0;
+ color: black;
 }
