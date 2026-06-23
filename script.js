@@ -72,7 +72,7 @@ let tl = gsap.timeline({
 });
 
 tl.to(".rings", {
-  scale: 0.6,
+  scale: 1.5,
   filter: "blur(30px)",
   opacity: 0.5,
   duration: 1
