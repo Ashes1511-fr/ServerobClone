@@ -13,8 +13,14 @@ if (Hls.isSupported()) {
 
 gsap.registerPlugin(ScrollTrigger);
 
-let lastscroll = 0;
-let header = document.querySelector("header");
+// navbar
+ScrollTrigger.create({
+  trigger: "body",
+  start: "20% top",
+  end: "max",
+});
+
+lastScroll = 0;
 
 window.addEventListener("scroll", () => {
   let currentscroll = window.pageYOffset;
@@ -44,47 +50,47 @@ window.addEventListener("scroll", () => {
   lastscroll = currentscroll;
 });
 
-let h1 = document.querySelector(".page2 h1");
+gsap.registerPlugin(ScrollTrigger);
 
-let words = h1.innerHTML
-  .split("<br>")
-  .map(line =>
-    line
-      .trim()
-      .split(" ")
-      .map(word => `<span>${word}</span>`)
-      .join(" ")
-  )
-  .join("<br>");
-
-h1.innerHTML = words;
-
-let tl = gsap.timeline({
+const tl = gsap.timeline({
   scrollTrigger: {
     trigger: ".page2",
     start: "top top",
-    end: "+=1000",
+    end: "+=1500",
     scrub: 2,
     pin: true,
-    anticipatePin: 1,
-    markers: false
+    // markers: true
   }
 });
 
-tl.to(".rings", {
-  scale: 1.5,
-  filter: "blur(30px)",
-  opacity: 0.5,
+tl.to(".page2 svg", {
+  y: -100,
+  duration: 1
+})
+.to(".page2 svg", {
+  scale: 0.5,
+  duration: 1
+})
+.to(".page2 svg", {
+  filter: "blur(15px)",
   duration: 1
 });
 
-tl.from(
-  ".page2 h1 span",
-  {
-    opacity: 0,
-    y: 30,
-    stagger: 0.08,
-    duration: 1
+const word = document.querySelector(".word");
+console.log(word);
+
+word.innerHTML = word.textContent
+  .split("")
+  .map(char => char === " " ? " " : `<span>${char}</span>`)
+  .join("");
+
+gsap.to(".word span", {
+  opacity: 1,
+  stagger: 0.05,
+  scrollTrigger: {
+    trigger: ".word",
+    start: "top 80%",
+    scrub: true,
+    markers : true
   },
-  0.3
-);
+});

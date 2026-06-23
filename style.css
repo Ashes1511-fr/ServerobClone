@@ -130,49 +130,41 @@ header {
   line-height: 0.95;
   letter-spacing: -0.04em;
 }
-
 .page2 {
-  height: 100vh;
-  width: 100%;
   position: relative;
-  background: #fff;
-  overflow: hidden;
+  height: 100vh;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
+  overflow: hidden;
 }
 
-.rings {
-  display: flex;
-  gap: 50px;
+.page2 svg {
   position: absolute;
-  z-index: 1;
+  margin-top: 20%;
+  z-index: 3;
+  width: 80%;
 }
 
-.ring {
-  width: 220px;
-  height: 220px;
-}
-
-.ring-arc {
-  fill: none;
-  stroke: #5de6b7;
-  stroke-width: 20;
-  stroke-linecap: round;
-}
-
-.page2 h1 {
+.text {
   position: relative;
-  z-index: 2;
-  font-size: 70px;
-  font-weight: 500;
-  width: 70%;
-  text-align: center;
-  line-height: 1.1;
-  color: #073b3a;
-  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 60%;
+  z-index: 5;
 }
 
-.page2 h1 span {
-  display: inline-block;
+.word {
+  font-size: 60px;
+  text-align: center;
+  font-weight: 400;
+}
+
+.word span{
+ display: inline-block;
+ opacity: 0;
+ color: black;
 }
