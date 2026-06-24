@@ -35,7 +35,7 @@ const word = document.querySelector(".word");
 
 word.innerHTML = word.textContent
   .split("")
-  .map(char => char === " " ? " " : `<span>${char}</span>`)
+  .map((char) => (char === " " ? " " : `<span>${char}</span>`))
   .join("");
 
 const tl = gsap.timeline({
@@ -45,30 +45,55 @@ const tl = gsap.timeline({
     end: "+=2000",
     scrub: 2,
     pin: true,
-  }
+  },
 });
 
 tl.from(".page2 svg", {
   y: 100,
   duration: 0.5,
-  ease: "power2.out"
+  ease: "power2.out",
 })
 
-.to(".page2 svg", {
-  scale: 0.8,
-  duration: 1,
-  ease: "power1.inOut"
-})
+  .to(".page2 svg", {
+    scale: 0.8,
+    duration: 1,
+    ease: "power1.inOut",
+  })
 
-.to(".page2 svg", {
-  scale: 1,
-  filter: "blur(28px)",
-  duration: 1.5,
-  ease: "power1.inOut"
-})
+  .to(".page2 svg", {
+    scale: 1,
+    filter: "blur(28px)",
+    duration: 1.5,
+    ease: "power1.inOut",
+  })
 
-.to(".word span", {
-  opacity: 1,
-  stagger: 0.03,
-  ease: "none"
-}, "<0.2"); // starts 0.3s into the blur phase
+  .to(
+    ".word span",
+    {
+      opacity: 1,
+      stagger: 0.03,
+      ease: "none",
+    },
+    "<0.2",
+  );
+
+let pr = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".page6",
+    start: "top 20",
+    end: "+=2000",
+    pin: true,
+    scrub: 15,
+    markers: true,
+  },
+});
+
+pr.to(
+  ".progressbar-line img",
+  {
+    top: "95%",
+  },
+  "harsh",
+);
+
+pr.to(".proggres-fill", {});

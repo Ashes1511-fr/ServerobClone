@@ -1,3 +1,10 @@
+@font-face {
+  font-family: Roobert-mid;
+  src: url(./fonts/Roobert-Medium.woff2);
+  font-family: Roobert-reg;
+  src: url(./fonts/Roobert-Regular.woff2);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -205,4 +212,56 @@ body {
   display: inline-block;
   opacity: 0;
   background-clip: text;
+}
+
+.page6{
+  height: 100vh;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+}
+
+.page-h1{
+  height: 30vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.page6 h1{
+  font-family: Roobert-reg;
+  text-align: center;
+  font-weight: 200;
+  margin-bottom: 15px;
+  font-size: 60px;
+  max-width: 400px;
+}
+.fixed{
+  height: 70vh;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+}
+.fixed-text{
+  height: 100%;
+  width: 50%;
+}
+
+.fixed-img{
+  height: 100%;
+  width: 50%;
+}
+
+.progressbar-line{
+  height: 95%;
+  width: 4px;
+  background-color: aquamarine;
+  position: relative;
+  left: 20px;
+}
+.progressbar-line img{
+  height : 2.5rem;
+  position: relative;
+  z-index: 5;
+  left: -450%;
 }
