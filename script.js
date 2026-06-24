@@ -17,15 +17,31 @@ gsap.registerPlugin(ScrollTrigger);
 let lastScroll = 0;
 
 window.addEventListener("scroll", () => {
-  let currentScroll = window.pageYOffset;
+  let currentscroll = window.pageYOffset;
 
-  if (currentScroll > lastScroll) {
-    gsap.to(".navbar", { y: -100, duration: 1, ease: "power2.out" });
+  if (currentscroll > window.innerHeight * 0.5) {
+    if (currentscroll > lastscroll) {
+      gsap.to(header, {
+        y: -120,
+        duration: 0.4,
+        ease: "power2.out"
+      });
+    } else {
+      gsap.to(header, {
+        y: 0,
+        duration: 0.4,
+        ease: "power2.out"
+      });
+    }
   } else {
-    gsap.to(".navbar", { y: 0, duration: 1, ease: "power2.out" });
+    gsap.to(header, {
+      y: 0,
+      duration: 0.4,
+      ease: "power2.out"
+    });
   }
 
-  lastScroll = currentScroll;
+  lastscroll = currentscroll;
 });
 
 // ── PAGE 2 ANIMATION ──
@@ -87,13 +103,3 @@ let pr = gsap.timeline({
     markers: true,
   },
 });
-
-pr.to(
-  ".progressbar-line img",
-  {
-    top: "95%",
-  },
-  "harsh",
-);
-
-pr.to(".proggres-fill", {});

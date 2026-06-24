@@ -9,11 +9,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family:
-    "Inter",
-    system-ui,
-    -apple-system,
-    sans-serif;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
 }
 
 body {
@@ -44,8 +40,16 @@ body {
   z-index: 2;
 }
 
-.navbar {
+header {
   position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+}
+
+.navbar {
+  position: absolute;
   top: 25px;
   left: 50%;
   transform: translateX(-50%);
@@ -101,48 +105,6 @@ body {
   margin-top: 5px;
   display: flex;
   align-items: center;
-}
-
-.pause-btn {
-  position: absolute;
-  top: 18px;
-  right: 18px;
-  width: 40px;
-  height: 40px;
-  border: none;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(8px);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 5;
-}
-
-.pause-btn:hover {
-  background: rgba(255, 255, 255, 0.28);
-}
-
-.pause-icon {
-  width: 12px;
-  height: 12px;
-}
-
-.pause-left {
-  x: 2;
-  y: 1;
-  width: 3;
-  height: 12;
-  fill: #fff;
-}
-
-.pause-right {
-  x: 9;
-  y: 1;
-  width: 3;
-  height: 12;
-  fill: #fff;
 }
 
 .content {
