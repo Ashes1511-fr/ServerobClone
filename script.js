@@ -13,14 +13,8 @@ if (Hls.isSupported()) {
 
 gsap.registerPlugin(ScrollTrigger);
 
-// navbar
-ScrollTrigger.create({
-  trigger: "body",
-  start: "20% top",
-  end: "max",
-});
-
-lastScroll = 0;
+// navbar hide/show on scroll
+let lastScroll = 0;
 
 window.addEventListener("scroll", () => {
   let currentScroll = window.pageYOffset;
@@ -34,47 +28,47 @@ window.addEventListener("scroll", () => {
   lastScroll = currentScroll;
 });
 
-gsap.registerPlugin(ScrollTrigger);
+// ── PAGE 2 ANIMATION ──
 
-const tl = gsap.timeline({
-  scrollTrigger: {
-    trigger: ".page2",
-    start: "top top",
-    end: "+=1500",
-    scrub: 2,
-    pin: true,
-    // markers: true
-  }
-});
-
-tl.to(".page2 svg", {
-  y: -100,
-  duration: 1
-})
-.to(".page2 svg", {
-  scale: 0.5,
-  duration: 1
-})
-.to(".page2 svg", {
-  filter: "blur(15px)",
-  duration: 1
-});
-
+// Split chars for text reveal
 const word = document.querySelector(".word");
-console.log(word);
 
 word.innerHTML = word.textContent
   .split("")
   .map(char => char === " " ? " " : `<span>${char}</span>`)
   .join("");
 
-gsap.to(".word span", {
-  opacity: 1,
-  stagger: 0.05,
+const tl = gsap.timeline({
   scrollTrigger: {
-    trigger: ".word",
-    start: "top 80%",
-    scrub: true,
-    markers : true
-  },
+    trigger: ".page2",
+    start: "top top",
+    end: "+=2000",
+    scrub: 2,
+    pin: true,
+  }
 });
+
+tl.from(".page2 svg", {
+  y: 100,
+  duration: 0.5,
+  ease: "power2.out"
+})
+
+.to(".page2 svg", {
+  scale: 0.8,
+  duration: 1,
+  ease: "power1.inOut"
+})
+
+.to(".page2 svg", {
+  scale: 1,
+  filter: "blur(28px)",
+  duration: 1.5,
+  ease: "power1.inOut"
+})
+
+.to(".word span", {
+  opacity: 1,
+  stagger: 0.03,
+  ease: "none"
+}, "<0.2"); // starts 0.3s into the blur phase
